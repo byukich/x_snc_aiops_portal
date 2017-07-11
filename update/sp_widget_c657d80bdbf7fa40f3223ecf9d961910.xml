@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function($scope, $location, $rootScope, spUtil, $interpolate) {
+	/* widget controller */
+	var c = this;
+
+	c.data.filters.forEach(function(filter){
+		if(filter.sys_id == 'default')
+		c.data.selected_filter = filter;
+	});
+
+	c.getSeverityClass = function(severity) {
+		if(severity == 'Critical') return 'sev_critical';
+		if(severity == 'Major') return 'sev_major';
+		if(severity == 'Minor') return 'sev_minor';
+		if(severity == 'Warning') return 'sev_warning';
+		if(severity == 'Info') return 'sev_info';
+		return '';
+	};
+
+	c.filterChanged = function() {
+		c.data.config.filter = c.data.selected_filter.filter;
+		c.refresh();
+	};
+
+	c.onClick = function($event, alert){
+		if (alert.details)
+			return;
+		alert.loading = true;
+		var url = '/em_alert.do?sys_id=' + alert.sys_id;
+		//window.open(url, '_blank');
+		console.log(alert.sys_id);
+		c.server.get({action: 'drill_down', alertId: alert.sys_id})
+			.then(function(response) {
+			alert.details = response.data.details;
+			alert.loading = false;
+		});
+	};
+	
+	c.isPrimary = function(alert) {
+		var groupValue = alert.group_source;
+		if (groupValue != 'Secondary' && groupValue != 'None') {
+			return { 'font-weight': 'bold' };
+		}
+	}
+
+	c.refresh = function() {
+		c.server.get({config : c.data.config})
+			.then(function(response){
+			c.data.alerts = response.data.alerts;
+		});
+	};
+
+	c.setSort = function(sortField) {
+		if(c.data.config.sort_field == sortField) {
+			if(c.data.config.sort_direction == 'descending') {
+				c.data.config.sort_direction = 'ascending';
+			} else {
+				c.data.config.sort_direction = 'descending';				
+			}
+		} else {
+			c.data.config.sort_field = sortField;
+			c.data.config.sort_direction = 'descending';				
+		}
+		c.refresh();
+	};
+
+	spUtil.recordWatch($scope, 'em_alert', '', c.refresh);
+	spUtil.recordWatch($scope, 'sys_filter', c.data.filter_query, function(){
+		c.server.get({action : 'filters'})
+			.then(function(response){
+			c.data.filters = response.data.filters;
+		});
+	});
+}]]></client_script>
+        <controller_as>c</controller_as>
+        <css>th {
+  font-size: 16px;
+  min-width: 100px;
+}
+
+.loader {
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.table.table-condensed tr td {
+   border-bottom: 1px solid #000;
+}
+
+.table.table-condensed th {
+   border-bottom: 1px solid #000;
+}
+
+.panel-heading {
+    font-size: 24px;
+}
+
+.sev_critical {
+  background-color: rgba(255, 65, 46, .25);
+}
+.sev_critical:hover {
+  background-color: rgba(255, 65, 46, 1);
+  color: white;
+}
+.sev_critical a {
+  background-color: rgb(255, 65, 46);
+  border-color: black;
+  color: white;
+}
+.sev_critical a:hover {
+  background-color: white;
+  border-color: rgb(255, 65, 46);
+  color: black;
+}
+
+.sev_major {
+  background-color: rgba(255, 149, 24, .3);
+}
+.sev_major:hover {
+  background-color: rgba(255, 149, 24, 1);
+  color: white;
+}
+.sev_major a {
+  background-color: rgb(255, 149, 24);
+  border-color: black;
+  color: white;
+}
+.sev_major a:hover {
+  background-color: white;
+  border-color: rgb(255, 149, 24);
+  color: black;
+}
+
+.sev_minor {
+  background-color: rgba(255, 201, 33, .25);
+}
+.sev_minor:hover {
+  background-color: rgba(255, 201, 33, 1);
+  color: white;
+}
+.sev_minor a {
+  background-color: rgb(255, 201, 33);
+  border-color: black;
+  color: white;
+}
+.sev_minor a:hover {
+  background-color: white;
+  border-color: rgb(255, 201, 33);
+  color: black;
+}
+
+.sev_warning {
+  background-color: rgba(79, 199, 255, .25);
+}
+.sev_warning:hover {
+  background-color: rgba(79, 199, 255, 1);
+  color: white;
+}
+.sev_warning a {
+  background-color: rgb(79, 199, 255);
+  border-color: black;
+  color: white;
+}
+.sev_warning a:hover {
+  background-color: white;
+  border-color: rgb(79, 199, 255);
+  color: black;
+}
+
+.sev_info {
+  background-color: rgba(76, 215, 98, .25);
+}
+.sev_info:hover {
+  background-color: rgba(76, 215, 98, 1);
+  color: white;
+}
+.sev_info a {
+  background-color: rgb(76, 215, 98);
+  border-color: black;
+  color: white;
+}
+.sev_info a:hover {
+  background-color: white;
+  border-color: rgb(76, 215, 98);
+  color: black;
+}
+
+.panel {
+  /*white-space: nowrap;*/
+  background-color: #fff;
+}</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description/>
+        <docs/>
+        <field_list/>
+        <has_preview>true</has_preview>
+        <id>alert-console</id>
+        <internal>false</internal>
+        <link/>
+        <name>Alert Console</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {
+	data.filter_query = 'table=em_alert^userISEMPTY^ORuserDYNAMIC90d1921e5f510100a9ad2572f2b477fe^EQ';
+	
+	if (input) {
+		if (input.action && input.action == 'filters') {
+			updateFilters();
+			return;
+		}
+		if (input.action && input.action == 'drill_down') {
+			var alertGr = new GlideRecord('em_alert');
+			alertGr.get(input.alertId);
+			data.details = alertGr.message_key + '';
+			return;
+		}
+		data.config = input.config;
+	} else {
+		updateFilters();
+		data.config = {
+			max_results : 20,
+			sort_field : 'severity',
+			sort_direction : 'ascending',
+			filter : 'correlation_group!=2^state!=Closed^severity!=5^maintenance=false',
+			field_list : [
+				{name : 'number', label : 'Number'},
+				{name : 'group_source', label : 'Group'},
+				{name : 'description', label : 'Description'},
+				{name : 'source', label : 'Source'},
+				{name : 'severity', label : 'Severity'},
+				{name : 'state', label : 'State'},
+				{name : 'sys_created_on', label : 'Created'},
+				{name : 'sys_updated_on', label : 'Updated'}
+			]
+		};
+
+		if (options.u_max_results) 
+			data.config.max_results = options.u_max_results;
+		if (options.u_initial_sort_field)
+			data.config.sort_field = options.u_initial_sort_field;
+		if (options.u_sort_direction)
+			data.config.sort_direction = options.u_sort_direction;
+		if (options.u_filter)
+			data.config.filter = options.u_filter;
+		if (options.u_columns) {
+			var columns = options.u_columns.split(',');
+
+			data.config.field_list = [];
+			columns.forEach(function (column){
+				if (column == 'sys_id')
+					return;
+				var field = {
+					name   : column,
+					label  : column,
+					plural : column
+				};
+				data.config.field_list.push(field);
+			});
+			
+			var grLabel = new GlideRecord('sys_documentation');
+			grLabel.addQuery('name', 'em_alert');
+			grLabel.addQuery('element', columns);
+			grLabel.query();
+			while (grLabel.next()) {
+				data.config.field_list.forEach(function(field){
+					if (grLabel.element == field.name) {
+						field.label = grLabel.label + '';
+						field.plural = grLabel.plural + '';
+					}
+				});
+			}
+		}
+	}
+
+	data.alerts = [];
+	var gr = new GlideRecord('em_alert');
+	var encodedQuery = 'correlation_group!=2';
+	if(data.config.filter) {
+		encodedQuery += '^' + data.config.filter;
+	}
+
+	gr.addEncodedQuery(encodedQuery);
+	if (data.config.sort_direction == 'descending') {
+		gr.orderByDesc(data.config.sort_field);
+	} else {
+		gr.orderBy(data.config.sort_field);
+	}
+	gr.setLimit(data.config.max_results);
+	gr.query();
+	
+	while (gr.next()) {
+		var alert = {
+			sys_id : gr.sys_id + ''
+		};
+		
+		data.config.field_list.forEach(function(field){
+			alert[field.name] = gr[field.name].getDisplayValue();
+		});
+		data.alerts.push(alert);
+	}
+	
+	function updateFilters() {
+		data.filters = [
+			{
+				sys_id : 'default',
+				title  : '[Default]',
+				filter : 'correlation_group!=2^state!=Closed^severity!=5^maintenance=false'
+			},
+			{
+				sys_id : 'all',
+				title  : '[All]',
+				filter : ''
+			}
+		];
+		var gr = new GlideRecord('sys_filter');
+		gr.addEncodedQuery(data.filter_query);
+		gr.orderBy('title');
+		gr.query();
+		while (gr.next()) {
+			data.filters.push({
+				sys_id : gr.sys_id + '',
+				title  : gr.title + '',
+				filter : gr.filter + ''
+			});
+		}
+	}
+})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>ben.yukich</sys_created_by>
+        <sys_created_on>2017-07-11 01:23:30</sys_created_on>
+        <sys_id>c657d80bdbf7fa40f3223ecf9d961910</sys_id>
+        <sys_mod_count>25</sys_mod_count>
+        <sys_name>Alert Console</sys_name>
+        <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
+        <sys_update_name>sp_widget_c657d80bdbf7fa40f3223ecf9d961910</sys_update_name>
+        <sys_updated_by>ben.yukich</sys_updated_by>
+        <sys_updated_on>2017-07-11 21:21:05</sys_updated_on>
+        <template><![CDATA[<div class="panel panel-default">
+  <div class="panel-heading container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <span class="glyphicon glyphicon-alert text-danger"></span>
+        &nbsp;Alert Console
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+          <form class="form-horizontal">
+            <label for="filterSelect" class="control-label col-md-4">Filter:</label>
+            <div class="col-md-8">
+              <select class="form-control"
+                      id="filterSelect"
+                      ng-model="data.selected_filter"
+                      ng-change="c.filterChanged()"
+                      ng-options="filter.title for filter in data.filters track by filter.sys_id">
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body table-responsive">
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th ng-repeat="field in c.data.config.field_list"
+            ng-click="c.setSort(field.name)">
+          {{field.label}} 
+          <span ng-if="field.name == c.data.config.sort_field">
+            <span ng-if="c.data.config.sort_direction != 'descending'"
+                  class="glyphicon glyphicon-triangle-top">
+            </span>
+            <span ng-if="c.data.config.sort_direction == 'descending'"
+                  class="glyphicon glyphicon-triangle-bottom">
+            </span>
+          </span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat-start="alert in c.data.alerts" 
+          class="{{c.getSeverityClass(alert.severity)}}"
+          ng-style="c.isPrimary(alert)"
+          ng-click="alert.expanded = !alert.expanded;  c.onClick($event, alert)"
+          data-href="/em_alert.do?sys_id={{alert.sys_id}}">
+        <td ng-repeat="field in c.data.config.field_list">
+          <a class="btn"
+             ng-if="field.name == 'number'" 
+             href="/em_alert.do?sys_id={{alert.sys_id}}" target="_blank">
+            {{alert[field.name]}}
+          </a>
+
+          <span ng-if="field.name != 'number'">
+            {{alert[field.name]}}
+          </span>
+        </td>
+      </tr>
+      <tr ng-if="alert.expanded" ng-repeat-end="">
+        <td colspan="999"><span ng-if="alert.loading"><span class="loader"></span></span>{{alert.details}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
