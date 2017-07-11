@@ -24,17 +24,18 @@
 		c.refresh();
 	};
 
-	c.onClick = function($event, alert){
+	c.onClick = function($event, alert) {
 		if (alert.details)
 			return;
 		alert.loading = true;
 		var url = '/em_alert.do?sys_id=' + alert.sys_id;
 		//window.open(url, '_blank');
-		console.log(alert.sys_id);
 		c.server.get({action: 'drill_down', alertId: alert.sys_id})
 			.then(function(response) {
 			alert.details = response.data.details;
+			alert.subalerts = response.data.subalerts;
 			alert.loading = false;
+			console.log(alert.subalerts);
 		});
 	};
 	
@@ -225,6 +226,7 @@
 			var alertGr = new GlideRecord('em_alert');
 			alertGr.get(input.alertId);
 			data.details = alertGr.message_key + '';
+			data.subalerts = getSubAlerts(input.alertId);
 			return;
 		}
 		data.config = input.config;
@@ -286,6 +288,36 @@
 	}
 
 	data.alerts = [];
+	
+	function getSubAlerts(parentId) {
+		var alerts = [];
+		var gr = new GlideRecord('em_alert');
+		gr.addQuery('parent', parentId);
+		gr.query();
+		while (gr.next()) {
+			var alert = {
+				sys_id : gr.sys_id + ''
+			};
+			
+			var field_list = [
+				{name : 'number', label : 'Number'},
+				{name : 'group_source', label : 'Group'},
+				{name : 'description', label : 'Description'},
+				{name : 'source', label : 'Source'},
+				{name : 'severity', label : 'Severity'},
+				{name : 'state', label : 'State'},
+				{name : 'sys_created_on', label : 'Created'},
+				{name : 'sys_updated_on', label : 'Updated'}
+			]
+
+			field_list.forEach(function(field){
+				alert[field.name] = gr[field.name].getDisplayValue();
+			});
+			alerts.push(alert);
+		}
+		return alerts;
+	}
+	
 	var gr = new GlideRecord('em_alert');
 	var encodedQuery = 'correlation_group!=2';
 	if(data.config.filter) {
@@ -343,14 +375,14 @@
         <sys_created_by>ben.yukich</sys_created_by>
         <sys_created_on>2017-07-11 01:23:30</sys_created_on>
         <sys_id>c657d80bdbf7fa40f3223ecf9d961910</sys_id>
-        <sys_mod_count>25</sys_mod_count>
+        <sys_mod_count>44</sys_mod_count>
         <sys_name>Alert Console</sys_name>
         <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
         <sys_policy/>
         <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
         <sys_update_name>sp_widget_c657d80bdbf7fa40f3223ecf9d961910</sys_update_name>
         <sys_updated_by>ben.yukich</sys_updated_by>
-        <sys_updated_on>2017-07-11 21:21:05</sys_updated_on>
+        <sys_updated_on>2017-07-11 21:56:17</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
   <div class="panel-heading container-fluid">
     <div class="row">
@@ -412,7 +444,32 @@
         </td>
       </tr>
       <tr ng-if="alert.expanded" ng-repeat-end="">
-        <td colspan="999"><span ng-if="alert.loading"><span class="loader"></span></span>{{alert.details}}</td>
+        <td colspan="999" style="padding-top:0px;padding-left:20px;"><span ng-if="alert.loading"><span class="loader"></span></span><!--{{alert.details}}-->
+          <!-- BEGIN sub-alert area -->
+          <div ng-if="alert.subalerts.length > 0" class="table-responsive">
+            <table class="table table-condensed" style="margin:0px;">
+              <tbody>
+              <tr ng-repeat="subAlert in alert.subalerts" 
+                  class="{{c.getSeverityClass(subAlert.severity)}}"
+                  ng-style="c.isPrimary(subAlert)"
+                  data-href="/em_alert.do?sys_id={{subAlert.sys_id}}">
+                <td ng-repeat="field in c.data.config.field_list">
+                  <a class="btn"
+                     ng-if="field.name == 'number'" 
+                     href="/em_alert.do?sys_id={{subAlert.sys_id}}" target="_blank">
+                    {{subAlert[field.name]}}
+                  </a>
+
+                  <span ng-if="field.name != 'number'">
+                    {{subAlert[field.name]}}
+                  </span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- END sub-alert area -->
+        </td>
       </tr>
       </tbody>
     </table>
