@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_scope_privilege">
+    <sys_scope_privilege action="INSERT_OR_UPDATE">
+        <operation>execute</operation>
+        <source_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</source_scope>
+        <status>allowed</status>
+        <sys_class_name>sys_scope_privilege</sys_class_name>
+        <sys_created_by>ben.yukich</sys_created_by>
+        <sys_created_on>2017-07-14 01:38:14</sys_created_on>
+        <sys_id>6ad77737db7bfe40f3223ecf9d961921</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Glide API: string utilities</sys_name>
+        <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
+        <sys_update_name>sys_scope_privilege_6ad77737db7bfe40f3223ecf9d961921</sys_update_name>
+        <sys_updated_by>ben.yukich</sys_updated_by>
+        <sys_updated_on>2017-07-14 01:38:14</sys_updated_on>
+        <target_name>Glide API: string utilities</target_name>
+        <target_scope display_value="Global">global</target_scope>
+        <target_type>scriptable</target_type>
+    </sys_scope_privilege>
+</record_update>

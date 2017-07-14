@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="sn_cmp_rsrc_tag_history" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>cmdb_ci</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>bf4a06d4939472004a9032bfa67ffbcd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.user</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>374a06d4939472004a9032bfa67ffbce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.user_group</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>b74a06d4939472004a9032bfa67ffbce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.application</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>3b4a06d4939472004a9032bfa67ffbce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.business_service</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>bb4a06d4939472004a9032bfa67ffbce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.cost_center</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>3f4a06d4939472004a9032bfa67ffbce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.project</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>bf4a06d4939472004a9032bfa67ffbce</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>tag_values.custom_values</element>
+            <list_id display_value="sn_cmp_rsrc_tag_history" element="NULL" name="sn_cmp_rsrc_tag_history" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">774a06d4939472004a9032bfa67ffbcd</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2017-01-09 21:01:09</sys_created_on>
+            <sys_id>334a06d4939472004a9032bfa67ffbcf</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2017-01-09 21:01:09</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>sn_cmp_rsrc_tag_history</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>ben.yukich</sys_created_by>
+            <sys_created_on>2017-07-13 20:42:31</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>6a24be3fdb37fe40f3223ecf9d96195a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name/>
+            <sys_package/>
+            <sys_policy/>
+            <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
+            <sys_update_name/>
+            <sys_updated_by>ben.yukich</sys_updated_by>
+            <sys_updated_on>2017-07-13 20:42:31</sys_updated_on>
+            <sys_user display_value="Ben Yukich">48f8a086db66b2001b783600ad961927</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>
