@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_ui_list parent="" relationship="" sys_domain="global" table="em_alert" version="2" view="">
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>number</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>0</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>dd46d98fdb18360046ee5411cf961989</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>severity</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>1</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5146d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>state</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>2</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>d146d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>source</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>3</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5546d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>node</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>4</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>d546d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>resource</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>5</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5946d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>type</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>6</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>d946d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>metric_name</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>7</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5d46d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>category</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>8</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>dd46d98fdb18360046ee5411cf96198a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>acknowledged</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>9</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5146d98fdb18360046ee5411cf96198b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>cmdb_ci</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>10</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>d146d98fdb18360046ee5411cf96198b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>incident</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>11</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5546d98fdb18360046ee5411cf96198b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>initial_event_time</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>12</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>d546d98fdb18360046ee5411cf96198b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list_element action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element>sys_updated_on</element>
+            <list_id display_value="em_alert" element="NULL" name="em_alert" parent="NULL" relationship="NULL" sys_domain="global" view="Default view">251637df93b83200a346f179077ffb47</list_id>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <position>13</position>
+            <sum>false</sum>
+            <sys_created_by>aleck.lin</sys_created_by>
+            <sys_created_on>2017-01-18 06:17:05</sys_created_on>
+            <sys_id>5946d98fdb18360046ee5411cf96198b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>aleck.lin</sys_updated_by>
+            <sys_updated_on>2017-01-18 06:17:05</sys_updated_on>
+        </sys_ui_list_element>
+        <sys_ui_list action="INSERT_OR_UPDATE">
+            <average_value>false</average_value>
+            <element/>
+            <max_value>false</max_value>
+            <min_value>false</min_value>
+            <name>em_alert</name>
+            <parent/>
+            <position/>
+            <relationship/>
+            <sum>false</sum>
+            <sys_class_name>sys_ui_list</sys_class_name>
+            <sys_created_by>ben.yukich</sys_created_by>
+            <sys_created_on>2017-07-17 21:14:28</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>7dd1abc5dbc407001b783600ad961999</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name/>
+            <sys_package/>
+            <sys_policy/>
+            <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
+            <sys_update_name/>
+            <sys_updated_by>ben.yukich</sys_updated_by>
+            <sys_updated_on>2017-07-17 21:14:28</sys_updated_on>
+            <sys_user display_value="Ben Yukich">48f8a086db66b2001b783600ad961927</sys_user>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_list>
+    </sys_ui_list>
+</record_update>

@@ -4,20 +4,41 @@
         <client_script><![CDATA[function($scope, $location, $rootScope, spUtil, $interpolate) {
 	/* widget controller */
 	var c = this;
+	c.data.isValid = true;
+	console.log(c.data.table);
+	console.log(c.data.field_list);
 	$scope.$on('alertSelected', function (event, data) {
 		c.server.get({alertId: data})
 		  .then(function(response) {
+			console.log(data + '-> ' + response.data.alertData);
 			c.data.alertData = response.data.alertData;
+			c.data.alertId = response.data.alertId;
 		});
   });
 }]]></client_script>
         <controller_as>c</controller_as>
         <css/>
-        <data_table>sp_instance</data_table>
-        <demo_data/>
+        <data_table>sp_instance_table</data_table>
+        <demo_data>{
+	"data":
+	{
+		"table":"em_alert",
+		"field_list":"description,cmdb_ci",
+		"alertData":[
+			{
+				"label":"Configuration Item",
+				"value":"lnux101"
+			},
+			{
+				"label":"Description",
+				"value":"Boooooo"
+			}
+		]
+	}
+}</demo_data>
         <description/>
         <docs/>
-        <field_list/>
+        <field_list>table,field_list</field_list>
         <has_preview>true</has_preview>
         <id>alert-detail</id>
         <internal>false</internal>
@@ -27,29 +48,29 @@
         <public>false</public>
         <roles/>
         <script><![CDATA[(function() {
-  /* populate the 'data' object */
-  /* e.g., data.table = $sp.getValue('table'); */
-
+  data.table = data.table || options.table || 'em_alert';
+	data.field_list = data.field_list || options.field_list || 'description';
+	var fields = data.field_list.split(',');
+	
 	if (input) {
 		loadEventDetails(input.alertId);
 	}
 	
 	function loadEventDetails(alertId) {
-		var gr = new GlideRecord('em_alert');
-		if (!gr.get(alertId)) {
-			return;
-		}
-		
 		var alertData = [];
-		for (var field in gr) {
-			var element = {};
-			element.label = getFieldLabel(field);
-			element.value = gr.getDisplayValue(field);
-			if (!gs.nil(element.value)) {
-				alertData.push(element);
+		var gr = new GlideRecord('em_alert');
+		if (gr.get(alertId)) {
+			for (var i = 0; i < fields.length; i++) {
+				var field = fields[i];
+				var element = {};
+				element.label = getFieldLabel(field);
+				element.value = gr.getDisplayValue(field);
+				if (!gs.nil(element.value)) {
+					alertData.push(element);
+				}
 			}
 		}
-		
+		data.alertId = alertId;
 		data.alertData = alertData;
 	}
 	
@@ -68,27 +89,26 @@
         <sys_created_by>ben.yukich</sys_created_by>
         <sys_created_on>2017-07-13 04:26:21</sys_created_on>
         <sys_id>7aa49327dbb7be40f3223ecf9d961991</sys_id>
-        <sys_mod_count>22</sys_mod_count>
+        <sys_mod_count>78</sys_mod_count>
         <sys_name>Alert Detail</sys_name>
         <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
         <sys_policy/>
         <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
         <sys_update_name>sp_widget_7aa49327dbb7be40f3223ecf9d961991</sys_update_name>
         <sys_updated_by>ben.yukich</sys_updated_by>
-        <sys_updated_on>2017-07-14 01:40:40</sys_updated_on>
-        <template><![CDATA[<div class="panel panel-default">
-  <div class="panel-heading container-fluid">
-    <div class="row">Alert Details</div>
+        <sys_updated_on>2017-09-12 18:50:27</sys_updated_on>
+        <template><![CDATA[<div ng-if="c.data.isValid" class="panel panel-default b">
+  <div class="panel-heading">
+    <h4 class="panel-title">Alert Details</h4>
   </div>
-  <div class="panel-body container-fluid">
-    <div class="row" ng-repeat="element in c.data.alertData">
-      <div class="col-md-6">
-        <strong>{{element.label}}</strong>
+  <div class="panel-body container-fluid form-horizontal">
+    	<div class="form-group" ng-repeat="element in c.data.alertData">
+        <label class="col-sm-4 control-label" for="{{element.label}}" >{{element.label}}</label>
+        <div class="col-sm-8 form-control-static" id="{{element.label}}">{{element.value}}</div>
       </div>
-      <div class="col-md-6">
-        {{element.value}}
-      </div>
-    </div>
+      <a ng-if="c.data.alertId != ''"
+         href="/em_alert.do?sys_id={{c.data.alertId}}"
+         target="_blank">Open Alert ...</a>
   </div>
 </div>]]></template>
     </sp_widget>

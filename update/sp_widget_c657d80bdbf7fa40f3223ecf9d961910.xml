@@ -36,7 +36,7 @@
 			alert.details = response.data.details;
 			alert.subalerts = response.data.subalerts;
 			alert.loading = false;
-			console.log(alert.subalerts);
+			//console.log(alert.subalerts);
 		});
 	};
 	
@@ -96,16 +96,25 @@
     100% { transform: rotate(360deg); }
 }
 
+tbody {
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+
 .table.table-condensed tr td {
-   border-bottom: 1px solid #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #000;
 }
 
 .table.table-condensed th {
-   border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
 
 .panel-heading {
-    font-size: 24px;
+  font-size: 24px;
 }
 
 .sev_critical {
@@ -309,7 +318,7 @@
 				{name : 'state', label : 'State'},
 				{name : 'sys_created_on', label : 'Created'},
 				{name : 'sys_updated_on', label : 'Updated'}
-			]
+			];
 
 			field_list.forEach(function(field){
 				alert[field.name] = gr[field.name].getDisplayValue();
@@ -341,6 +350,9 @@
 		
 		data.config.field_list.forEach(function(field){
 			alert[field.name] = gr[field.name].getDisplayValue();
+			if (field.name == 'description' && alert[field.name].length > 40) {
+				alert[field.name] = alert[field.name].substring(0,39) + ' ...';
+			}
 		});
 		data.alerts.push(alert);
 	}
@@ -376,22 +388,22 @@
         <sys_created_by>ben.yukich</sys_created_by>
         <sys_created_on>2017-07-11 01:23:30</sys_created_on>
         <sys_id>c657d80bdbf7fa40f3223ecf9d961910</sys_id>
-        <sys_mod_count>49</sys_mod_count>
+        <sys_mod_count>96</sys_mod_count>
         <sys_name>Alert Console</sys_name>
         <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
         <sys_policy/>
         <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
         <sys_update_name>sp_widget_c657d80bdbf7fa40f3223ecf9d961910</sys_update_name>
         <sys_updated_by>ben.yukich</sys_updated_by>
-        <sys_updated_on>2017-07-13 23:18:24</sys_updated_on>
+        <sys_updated_on>2017-09-12 18:27:41</sys_updated_on>
         <template><![CDATA[<div class="panel panel-default">
   <div class="panel-heading container-fluid">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-4">
         <span class="glyphicon glyphicon-alert text-danger"></span>
         &nbsp;Alert Console
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-md-offset-4">
         <div class="row">
           <form class="form-horizontal">
             <label for="filterSelect" class="control-label col-md-4">Filter:</label>
@@ -428,23 +440,36 @@
       </thead>
       <tbody>
       <tr ng-repeat-start="alert in c.data.alerts" 
-          class="{{c.getSeverityClass(alert.severity)}}"
+          class="{{::c.getSeverityClass(alert.severity)}}"
           ng-style="c.isPrimary(alert)"
-          ng-click="alert.expanded = !alert.expanded;  c.onClick($event, alert)"
-          data-href="/em_alert.do?sys_id={{alert.sys_id}}">
+          ng-click="alert.expanded = !alert.expanded;  c.onClick($event, alert)">
+          <!--data-href="/em_alert.do?sys_id={{alert.sys_id}}"-->
         <td ng-repeat="field in c.data.config.field_list">
-          <a class="btn"
-             ng-if="field.name == 'number'" 
+          <div ng-switch on="field.name">
+            <a class="btn"
+             ng-switch-when="number"
              href="/em_alert.do?sys_id={{alert.sys_id}}" target="_blank">
             {{alert[field.name]}}
-          </a>
+            </a>
+            <span ng-switch-when="group_source">
+              <span ng-if="alert[field.name] != 'None' && alert.expanded == true" title="" class="glyphicon glyphicon-collapse-down"></span>
+              <span ng-if="alert[field.name] != 'None' && alert.expanded != true" title="" class="glyphicon glyphicon-expand"></span>
 
-          <span ng-if="field.name != 'number'">
-            {{alert[field.name]}}
-          </span>
+              <span>{{alert[field.name]}}</span>              
+              </span>
+            <span ng-switch-when="sys_created_on">
+              <sn-time-ago timestamp="alert[field.name]" />
+            </span>
+            <span ng-switch-when="sys_updated_on">
+              <sn-time-ago timestamp="alert[field.name]" />
+            </span>
+            <span ng-switch-default>
+              {{alert[field.name]}}
+            </span>
+          </div>
         </td>
       </tr>
-      <tr ng-if="alert.expanded && c.isPrimary(alert)" ng-repeat-end="">
+      <tr ng-if="alert.expanded && alert.group_source != 'Secondary' && alert.group_source != 'None'" ng-repeat-end="">
         <td colspan="999" style="padding-top:0px;padding-left:20px;"><span ng-if="alert.loading"><span class="loader"></span></span><!--{{alert.details}}-->
           <!-- BEGIN sub-alert area -->
           <div ng-if="alert.subalerts.length > 0" class="table-responsive">
@@ -453,7 +478,8 @@
               <tr ng-repeat="subAlert in alert.subalerts" 
                   class="{{c.getSeverityClass(subAlert.severity)}}"
                   ng-style="c.isPrimary(subAlert)"
-                  data-href="/em_alert.do?sys_id={{subAlert.sys_id}}">
+                  data-href="/em_alert.do?sys_id={{subAlert.sys_id}}"
+                  ng-click="c.onClick($event, subAlert)">
                 <td ng-repeat="field in c.data.config.field_list">
                   <a class="btn"
                      ng-if="field.name == 'number'" 
