@@ -4,17 +4,21 @@
         <client_script><![CDATA[function($scope, $location, $rootScope, spUtil, $interpolate) {
 	/* widget controller */
 	var c = this;
-	c.data.isValid = true;
-	console.log(c.data.table);
-	console.log(c.data.field_list);
 	$scope.$on('alertSelected', function (event, data) {
-		c.server.get({alertId: data})
-		  .then(function(response) {
-			console.log(data + '-> ' + response.data.alertData);
-			c.data.alertData = response.data.alertData;
-			c.data.alertId = response.data.alertId;
+		c.server.get({action: 'load', alertId: data})
+			.then(function(response) {
+				c.data = response.data;
+				c.data.isValid = true;
 		});
   });
+	
+	c.acknowledge = function(alertId) {
+		c.server.get({action: 'acknowledge', alertId: alertId});
+	}
+	
+	c.close = function(alertId) {
+		c.server.get({action: 'close', alertId: alertId});
+	}
 }]]></client_script>
         <controller_as>c</controller_as>
         <css/>
@@ -22,6 +26,7 @@
         <demo_data>{
 	"data":
 	{
+		"isValid":true,
 		"table":"em_alert",
 		"field_list":"description,cmdb_ci",
 		"alertData":[
@@ -33,7 +38,9 @@
 				"label":"Description",
 				"value":"Boooooo"
 			}
-		]
+		],
+		"alertId":"madeupsysid",
+		"alertName":"Alert0000123"
 	}
 }</demo_data>
         <description/>
@@ -53,18 +60,24 @@
 	var fields = data.field_list.split(',');
 	
 	if (input) {
-		loadEventDetails(input.alertId);
+		if (input.action == 'load')
+			loadEventDetails(input.alertId);
+		if (input.action == 'acknowledge')
+			acknowledge(input.alertId);
+		if (input.action == 'close')
+			close(input.alertId);
 	}
 	
 	function loadEventDetails(alertId) {
 		var alertData = [];
+		var displayData
 		var gr = new GlideRecord('em_alert');
 		if (gr.get(alertId)) {
 			for (var i = 0; i < fields.length; i++) {
 				var field = fields[i];
 				var element = {};
-				element.label = getFieldLabel(field);
-				element.value = gr.getDisplayValue(field);
+				element.label = gr[field].getLabel();
+				element.value = gr[field].getDisplayValue();
 				if (!gs.nil(element.value)) {
 					alertData.push(element);
 				}
@@ -72,15 +85,25 @@
 		}
 		data.alertId = alertId;
 		data.alertData = alertData;
+		data.alertName = gr.getDisplayValue('number');
 	}
 	
-	function getFieldLabel(field) {
-		var gr = new GlideRecord('sys_documentation');
-		gr.addQuery('name', 'em_alert');
-		gr.addQuery('element', field);
-		gr.query();
-		if (gr.next()) {
-			return gr.label + '';
+	function acknowledge(alertId) {
+		var gr = new GlideRecord('em_alert');
+		if (gr.get(alertId)) {
+			gr.acknowledged = true;
+			gr.update();
+		}
+	}
+	
+	function close(alertId) {
+		var gr = new GlideRecord('em_alert');
+		if (gr.get(alertId)) {
+			gr.state = 'Closed';
+			if (gs.getProperty('evt_mgmt.alert_ack_on_close') == 'true') { // if property is turned on
+				gr.acknowledged = true;
+			}
+			gr.update();
 		}
 	}
 })();]]></script>
@@ -89,14 +112,14 @@
         <sys_created_by>ben.yukich</sys_created_by>
         <sys_created_on>2017-07-13 04:26:21</sys_created_on>
         <sys_id>7aa49327dbb7be40f3223ecf9d961991</sys_id>
-        <sys_mod_count>78</sys_mod_count>
+        <sys_mod_count>108</sys_mod_count>
         <sys_name>Alert Detail</sys_name>
         <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
         <sys_policy/>
         <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
         <sys_update_name>sp_widget_7aa49327dbb7be40f3223ecf9d961991</sys_update_name>
         <sys_updated_by>ben.yukich</sys_updated_by>
-        <sys_updated_on>2017-09-12 18:50:27</sys_updated_on>
+        <sys_updated_on>2017-11-03 16:33:46</sys_updated_on>
         <template><![CDATA[<div ng-if="c.data.isValid" class="panel panel-default b">
   <div class="panel-heading">
     <h4 class="panel-title">Alert Details</h4>
@@ -106,9 +129,14 @@
         <label class="col-sm-4 control-label" for="{{element.label}}" >{{element.label}}</label>
         <div class="col-sm-8 form-control-static" id="{{element.label}}">{{element.value}}</div>
       </div>
-      <a ng-if="c.data.alertId != ''"
+    <div class="">
+      <a ng-if="c.data.alertId"
+         class="btn btn-primary"
          href="/em_alert.do?sys_id={{c.data.alertId}}"
-         target="_blank">Open Alert ...</a>
+         target="_blank">Manage <span class="glyphicon glyphicon-new-window"></span></a>
+      <a ng-click="c.acknowledge(c.data.alertId)" class="btn btn-info" href="#" role="button">Acknowledge</a>
+      <a ng-click="c.close(c.data.alertId)"class="btn btn-warning" href="#" role="button">Close</a>
+    </div>
   </div>
 </div>]]></template>
     </sp_widget>

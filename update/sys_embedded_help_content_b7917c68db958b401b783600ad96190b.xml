@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_embedded_help_content">
+    <sys_embedded_help_content action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category/>
+        <content><![CDATA[    <h1 class="title topictitle1">Scorecards</h1>            <div class="body conbody">        <p class="p"><span class="ph">Scorecards display data for a single indicator and enable you to   perform detailed analysis of the indicator data.</span></p>        <ul class="ul" id="zz_pa_scorecards-normal__ul_npd_rdh_yv"><li class="li">A solid blue star beside an indicator name indicates that it is a favorite. Click the star        beside the scorecard to mark it as a favorite.</li><li class="li">A black dot beside an indicator name indicates that it is a key indicator. Mark indicators        as key by selecting the <span class="ph uicontrol">Key</span> check box when creating the        indicator.</li></ul>        <div class="p">You can choose to view all indicators, or filter the list based on the      indicator performance.<ul class="ul" id="zz_pa_scorecards-normal__d26910e54"><li class="li"><span class="ph uicontrol">Best:</span> Shows indicators that are outperforming their target          (green), ordered by Gap % (best performers on top).</li><li class="li"><span class="ph uicontrol">Worst:</span> Shows indicators that are under performing their target          (red), ordered by Gap % (worst performers on top).</li><li class="li"><span class="ph uicontrol">Improved:</span> Shows indicators that have improved compared to the          previous data collection (moving in the right direction).</li><li class="li"><span class="ph uicontrol">Degraded:</span> Shows indicators that have degraded compared to the          previous data collection (moving in the wrong direction).</li></ul></div>    </div>    <div class="related-links"><div class="relinfo"><div class="reltitle">Related information<br /><div><a class="link" href="https://docs.servicenow.com/?context&#61;CSHelp:Performance-Analytics-Scorecards-Container" target="_blank" rel="nofollow">Using Scorecards</a></div></div></div></div>]]></content>
+        <last_sync>2017-10-30 22:28:10</last_sync>
+        <modifier>normal</modifier>
+        <name>$pa_scorecards-normal</name>
+        <page>$pa_scorecards</page>
+        <product>1</product>
+        <qualifier/>
+        <role/>
+        <role_order>1000</role_order>
+        <snc_created>true</snc_created>
+        <sys_class_name>sys_embedded_help_content</sys_class_name>
+        <sys_created_by>system</sys_created_by>
+        <sys_created_on>2017-09-15 22:26:05</sys_created_on>
+        <sys_id>b7917c68db958b401b783600ad96190b</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>$pa_scorecards-normal</sys_name>
+        <sys_package display_value="AIOps Portal" source="x_snc_aiops_portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="AIOps Portal">9e759847dbf7fa40f3223ecf9d9619b9</sys_scope>
+        <sys_update_name>sys_embedded_help_content_b7917c68db958b401b783600ad96190b</sys_update_name>
+        <sys_updated_by>system</sys_updated_by>
+        <sys_updated_on>2017-10-30 22:28:10</sys_updated_on>
+        <version>j</version>
+    </sys_embedded_help_content>
+    <sys_translated_text action="delete_multiple" query="documentkey=b7917c68db958b401b783600ad96190b"/>
+</record_update>
